@@ -37,7 +37,7 @@ namespace Weather_App
                 var json = web.DownloadString(url);
                 WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
 
-                picIcon.ImageLocation = "https://openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
+                picIcon.ImageLocation = $"https://openweathermap.org/img/wn/{Info.weather[0].icon}@2x.png";
                 labCondition.Text = Info.weather[0].main;
                 labDetails.Text = Info.weather[0].description;
                 labSunset.Text = convertDataTime(Info.sys.sunset).ToShortTimeString();

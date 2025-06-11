@@ -11,7 +11,7 @@ namespace Weather_App
     {
         public class coord
         {
-            public double lot { get; set; }
+            public double lon { get; set; }
             public double lat { get; set; }
         }
         public class weather
