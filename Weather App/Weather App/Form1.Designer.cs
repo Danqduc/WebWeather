@@ -203,6 +203,7 @@
             // picIcon
             // 
             this.picIcon.BackColor = System.Drawing.Color.Transparent;
+            this.picIcon.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picIcon.ErrorImage")));
             this.picIcon.Location = new System.Drawing.Point(108, 146);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(100, 64);
