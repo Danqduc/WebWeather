@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
-            this.TBCity = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.labCondition = new System.Windows.Forms.Label();
             this.labDetails = new System.Windows.Forms.Label();
@@ -43,6 +42,10 @@
             this.labWindSpeed = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.picIcon = new System.Windows.Forms.PictureBox();
+            this.TBCity = new System.Windows.Forms.ComboBox();
+            this.lstHistory = new System.Windows.Forms.ListBox();
+            this.btnDeleteCity = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,14 +60,6 @@
             this.label1.Size = new System.Drawing.Size(44, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "City:";
-            // 
-            // TBCity
-            // 
-            this.TBCity.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBCity.Location = new System.Drawing.Point(154, 98);
-            this.TBCity.Name = "TBCity";
-            this.TBCity.Size = new System.Drawing.Size(242, 31);
-            this.TBCity.TabIndex = 1;
             // 
             // btnSearch
             // 
@@ -211,6 +206,52 @@
             this.picIcon.TabIndex = 13;
             this.picIcon.TabStop = false;
             // 
+            // TBCity
+            // 
+            this.TBCity.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBCity.FormattingEnabled = true;
+            this.TBCity.Location = new System.Drawing.Point(154, 98);
+            this.TBCity.Name = "TBCity";
+            this.TBCity.Size = new System.Drawing.Size(245, 31);
+            this.TBCity.TabIndex = 14;
+            // 
+            // lstHistory
+            // 
+            this.lstHistory.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstHistory.FormattingEnabled = true;
+            this.lstHistory.ItemHeight = 23;
+            this.lstHistory.Location = new System.Drawing.Point(203, 456);
+            this.lstHistory.Name = "lstHistory";
+            this.lstHistory.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstHistory.Size = new System.Drawing.Size(245, 27);
+            this.lstHistory.TabIndex = 15;
+            // 
+            // btnDeleteCity
+            // 
+            this.btnDeleteCity.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteCity.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteCity.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteCity.Location = new System.Drawing.Point(467, 449);
+            this.btnDeleteCity.Name = "btnDeleteCity";
+            this.btnDeleteCity.Size = new System.Drawing.Size(79, 45);
+            this.btnDeleteCity.TabIndex = 16;
+            this.btnDeleteCity.Text = "Delete";
+            this.btnDeleteCity.UseVisualStyleBackColor = false;
+            this.btnDeleteCity.Click += new System.EventHandler(this.btnDeleteCity_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(104, 460);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 23);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "DeleteCity:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,6 +259,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(856, 538);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnDeleteCity);
+            this.Controls.Add(this.lstHistory);
+            this.Controls.Add(this.TBCity);
             this.Controls.Add(this.picIcon);
             this.Controls.Add(this.labPressure);
             this.Controls.Add(this.label4);
@@ -230,7 +275,6 @@
             this.Controls.Add(this.labDetails);
             this.Controls.Add(this.labCondition);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.TBCity);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.Name = "Form1";
@@ -245,7 +289,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TBCity;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label labCondition;
         private System.Windows.Forms.Label labDetails;
@@ -258,6 +301,10 @@
         private System.Windows.Forms.Label labWindSpeed;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox picIcon;
+        private System.Windows.Forms.ComboBox TBCity;
+        private System.Windows.Forms.ListBox lstHistory;
+        private System.Windows.Forms.Button btnDeleteCity;
+        private System.Windows.Forms.Label label2;
     }
 }
 

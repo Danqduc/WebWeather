@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
+using System.IO;
 using System.Drawing.Drawing2D;
 
 namespace Weather_App
@@ -30,6 +30,19 @@ namespace Weather_App
 
             btnSearch.MouseEnter += btnSearch_MouseEnter;
             btnSearch.MouseLeave += btnSearch_MouseLeave;
+
+            if (File.Exists("history.txt"))
+            {
+                var cities = File.ReadAllLines("history.txt").Distinct();
+                foreach (var city in cities)
+                {
+                    if (!string.IsNullOrWhiteSpace(city))
+                    {
+                        TBCity.Items.Add(city.Trim());
+                        lstHistory.Items.Add(city.Trim());
+                    }
+                }
+            }
 
         }
         private void btnToggleTheme_Click(object sender, EventArgs e)
@@ -78,6 +91,7 @@ namespace Weather_App
             {
                 using (WebClient web = new WebClient())
                 {
+                    string city = TBCity.Text.Trim();
                     string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}", TBCity.Text, APIKey);
                     var json = web.DownloadString(url);
                     WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
@@ -90,6 +104,12 @@ namespace Weather_App
 
                     labWindSpeed.Text = Info.wind.speed.ToString();
                     labPressure.Text = Info.main.pressure.ToString();
+
+                    if(!TBCity.Items.Contains(city))
+                    {
+                        TBCity.Items.Add(city);
+                        File.AppendAllText("history.txt", city + Environment.NewLine);
+                    }
                 }
             }
             catch (WebException ex)
@@ -111,6 +131,35 @@ namespace Weather_App
             day = day.AddSeconds(sec).ToLocalTime();
 
             return day;
+        }
+
+        private void btnDeleteCity_Click(object sender, EventArgs e)
+        {
+            if (lstHistory.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Chon thanh pho muon xoa.");
+                return;
+            }
+
+            List<string> allCities = File.ReadAllLines("history.txt").ToList();
+
+            foreach (var selected in lstHistory.SelectedItems)
+            {
+                string cityToRemove = selected.ToString().Trim();
+                allCities.RemoveAll(c => c.Equals(cityToRemove, StringComparison.OrdinalIgnoreCase));
+            }
+
+            File.WriteAllLines("history.txt", allCities);
+
+            lstHistory.Items.Clear();
+            foreach (var city in allCities.Distinct())
+                lstHistory.Items.Add(city);
+
+            TBCity.Items.Clear();
+            foreach (var city in allCities.Distinct())
+                TBCity.Items.Add(city);
+
+            MessageBox.Show("Da xoa thanh cong");
         }
     }
 }
