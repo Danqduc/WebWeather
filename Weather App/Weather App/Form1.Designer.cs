@@ -78,6 +78,7 @@
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // labCondition
             // 
@@ -204,7 +205,7 @@
             this.picIcon.BackColor = System.Drawing.Color.Transparent;
             this.picIcon.Location = new System.Drawing.Point(108, 146);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(100, 61);
+            this.picIcon.Size = new System.Drawing.Size(100, 64);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 13;
             this.picIcon.TabStop = false;
