@@ -74,20 +74,35 @@ namespace Weather_App
         }
         void getWeather()
         {
-            using (WebClient web = new WebClient())
+            try
             {
-                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}", TBCity.Text, APIKey);
-                var json = web.DownloadString(url);
-                WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
+                using (WebClient web = new WebClient())
+                {
+                    string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}", TBCity.Text, APIKey);
+                    var json = web.DownloadString(url);
+                    WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
 
-                picIcon.ImageLocation = "https://openweathermap.org/img/wn/" + Info.weather[0].icon + "@2x.png";
-                labCondition.Text = Info.weather[0].main;
-                labDetails.Text = Info.weather[0].description;
-                labSunset.Text = convertDataTime(Info.sys.sunset).ToShortTimeString();
-                labSunrise.Text = convertDataTime(Info.sys.sunrise).ToShortTimeString();
+                    picIcon.ImageLocation = "https://openweathermap.org/img/wn/" + Info.weather[0].icon + "@2x.png";
+                    labCondition.Text = Info.weather[0].main;
+                    labDetails.Text = Info.weather[0].description;
+                    labSunset.Text = convertDataTime(Info.sys.sunset).ToShortTimeString();
+                    labSunrise.Text = convertDataTime(Info.sys.sunrise).ToShortTimeString();
 
-                labWindSpeed.Text = Info.wind.speed.ToString();
-                labPressure.Text = Info.main.pressure.ToString();
+                    labWindSpeed.Text = Info.wind.speed.ToString();
+                    labPressure.Text = Info.main.pressure.ToString();
+                }
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show("Khong the ket noi toi may chu thoi tiet.\nVui long kiem tra ket noi Internet hoac nhap dung ten thanh pho.", "Loi mang", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (JsonException ex)
+            {
+                MessageBox.Show("Du lieu phan hoi tu API khong hop le.\nCo the ten thanh pho khong ton tai hoac API thay doi.", "Loi du lieu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Da xay ra loi khong xac dinh:\n" + ex.Message, "Loi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
         DateTime convertDataTime(long sec)
