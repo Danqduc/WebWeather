@@ -1,0 +1,35 @@
+Thư mục Visual Studio cache (nguyên nhân gây lỗi)
+.vs/
+**/.vs/
+
+Thư mục cấu hình VS Code (nếu bạn dùng VS Code song song)
+.vscode/
+
+Kết quả biên dịch
+bin/
+obj/
+out/
+
+File người dùng (không nên chia sẻ, mỗi máy khác nhau)
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+File log / lỗi / backup
+*.log
+*.bak
+*.tmp
+
+File điều hướng, IntelliSense
+*.dbmdl
+*.VC.db
+
+Kết quả build
+*.exe
+*.dll
+*.pdb
+
+Khác
+*.cache
+*.ide
